@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORSE CODE DETECTOR</title>
+    <style>
+        /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 20px;
+    color: #333;
+    border-bottom: 3px solid #007BFF;
+    padding-bottom: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Button Container */
+.buttons-container {
+    margin: 20px;
+}
+
+/* Button Styles */
+button {
+    background-color: #007BFF;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+/*Start Button*/
+button:hover {
+    background-color: green;
+    border-color: red;
+}
+/*Stop Button*/
+#stop-btn:hover{
+    background-color: red;
+    border-color: blue;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Video Container Styles */
+#video-container {
+    position: relative;
+    margin-top: 20px;
+    max-width: 100%;
+    border: 5px solid #007BFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background-color: white;
+}
+
+#video-feed {
+    width: 100%;
+    height: auto;
+    display: none;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+        width: 90%;
+    }
+}
+    </style>
+</head>
+<body>
+    <h1>MORSE CODE DETECTOR</h1>
+    <div class="buttons-container">
+        <button id="start-btn" onclick="startCamera()">Start Camera</button>
+        <button id="stop-btn" onclick="stopCamera()">Stop Camera</button>
+    </div>
+    <div id="video-container">
+        <img id="video-feed" src="" />
+    </div>
+    <script>
+        function startCamera() {
+            const videoFeed = document.getElementById('video-feed');
+            videoFeed.src = "/video";
+            videoFeed.style.display = "block";
+        }
+
+        function stopCamera() {
+            const videoFeed = document.getElementById('video-feed');
+            videoFeed.src = "";
+            videoFeed.style.display = "none";
+            fetch('/stop');
+        }
+    </script>
+</body>
+</html>
